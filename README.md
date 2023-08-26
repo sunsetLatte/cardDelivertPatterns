@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/r6ts66v98tbfipm5?svg=true)](https://ci.appveyor.com/project/sunsetLatte/carddelivertpatterns)

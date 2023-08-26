@@ -169,7 +169,7 @@ public class DeliveryTest {
     }
 
     @Test                 // Негативный тест, пустой телефон
-    void   EmptydPhone() {
+    void   EmptyPhone() {
 //        Configuration.holdBrowserOpen = true;
         open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
