@@ -22,11 +22,15 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class DeliveryTest {
 
+    @BeforeEach
+    void setup() {
+        open("http://localhost:9999");
+    }
+
 
     @Test                                        // Позитивный тест
     void shouldRegisteredAndReplanMeetingDay() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 4;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
@@ -56,7 +60,6 @@ public class DeliveryTest {
     @Test                // Негативный тест, невалидный город
     void InvalidCity() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 5;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
@@ -75,9 +78,8 @@ public class DeliveryTest {
     @Test                // Негативный тест, пустое поля города
     void EmptyCity() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
-        int daysToAddForFirstMeeting = 4;
+        int daysToAddForFirstMeeting = 6;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         $("[data-test-id='city'] input").setValue("");
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -94,9 +96,8 @@ public class DeliveryTest {
     @Test                // Негативный тест, невалидное имя
     void InvalidName() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
-        int daysToAddForFirstMeeting = 4;
+        int daysToAddForFirstMeeting = 7;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -113,9 +114,8 @@ public class DeliveryTest {
     @Test                // Негативный тест, пустое имя
     void EmptyName() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
-        int daysToAddForFirstMeeting = 4;
+        int daysToAddForFirstMeeting = 8;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -132,9 +132,8 @@ public class DeliveryTest {
     @Test                // Баг, заказ не подтверждается, если в имени есть буква "ё"
     void BagSymbolInName() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
-        int daysToAddForFirstMeeting = 4;
+        int daysToAddForFirstMeeting = 9;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -151,9 +150,8 @@ public class DeliveryTest {
     @Test                 // БАГ Происходит заказ карты с некорректным номером телефона
     void   BagInvalidPhone() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
-        int daysToAddForFirstMeeting = 4;
+        int daysToAddForFirstMeeting = 10;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
@@ -171,9 +169,8 @@ public class DeliveryTest {
     @Test                 // Негативный тест, пустой телефон
     void   EmptyPhone() {
 //        Configuration.holdBrowserOpen = true;
-        open("http://localhost:9999/");
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
-        int daysToAddForFirstMeeting = 4;
+        int daysToAddForFirstMeeting = 11;
         String firstMeetingDate = DataGenerator.generateDate(daysToAddForFirstMeeting);
         $("[data-test-id='city'] input").setValue(validUser.getCity());
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
