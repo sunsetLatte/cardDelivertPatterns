@@ -58,7 +58,7 @@ public class DeliveryTest {
     }
 
     @Test                // Негативный тест, невалидный город
-    void InvalidCity() {
+    void shouldNotRegisteredWithInvalidCity() {
 //        Configuration.holdBrowserOpen = true;
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 5;
@@ -76,7 +76,7 @@ public class DeliveryTest {
     }
 
     @Test                // Негативный тест, пустое поля города
-    void EmptyCity() {
+    void shouldNotRegisteredWithEmptyCity() {
 //        Configuration.holdBrowserOpen = true;
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 6;
@@ -94,7 +94,7 @@ public class DeliveryTest {
     }
 
     @Test                // Негативный тест, невалидное имя
-    void InvalidName() {
+    void shouldNotRegisteredWithInvalidName() {
 //        Configuration.holdBrowserOpen = true;
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 7;
@@ -112,7 +112,7 @@ public class DeliveryTest {
     }
 
     @Test                // Негативный тест, пустое имя
-    void EmptyName() {
+    void shouldNotRegisteredWithEmptyName() {
 //        Configuration.holdBrowserOpen = true;
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 8;
@@ -130,7 +130,7 @@ public class DeliveryTest {
     }
 
     @Test                // Баг, заказ не подтверждается, если в имени есть буква "ё"
-    void BagSymbolInName() {
+    void shouldNotRegisteredAndReplanMeetingDayWihLetterYoInNameBag() {
 //        Configuration.holdBrowserOpen = true;
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 9;
@@ -148,7 +148,7 @@ public class DeliveryTest {
     }
 
     @Test                 // БАГ Происходит заказ карты с некорректным номером телефона
-    void   BagInvalidPhone() {
+    void   shouldNotRegisteredWithInvalidPhoneBag() {
 //        Configuration.holdBrowserOpen = true;
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 10;
@@ -157,7 +157,7 @@ public class DeliveryTest {
         $("[data-test-id='date'] input").sendKeys(Keys.chord(Keys.SHIFT, Keys.HOME), Keys.BACK_SPACE);
         $("[data-test-id='date'] input").setValue(firstMeetingDate);
         $("[data-test-id='name'] input").setValue(validUser.getName());
-        $("[data-test-id='phone'] input").setValue("+791699300331");
+        $("[data-test-id='phone'] input").setValue("911");
         $("[data-test-id='agreement']").click();
         $$("button").find(exactText("Запланировать")).click();
         $(withText("Успешно")).shouldBe(visible, Duration.ofSeconds(50));
@@ -167,7 +167,7 @@ public class DeliveryTest {
     }
 
     @Test                 // Негативный тест, пустой телефон
-    void   EmptyPhone() {
+    void   shouldNotRegisteredWithEmptyPhone() {
 //        Configuration.holdBrowserOpen = true;
         DataGenerator.UserInfo validUser = DataGenerator.Registration.generateUser("ru");
         int daysToAddForFirstMeeting = 11;
